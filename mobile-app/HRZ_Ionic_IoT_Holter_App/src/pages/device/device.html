@@ -1,0 +1,124 @@
+<!--
+  Device Page - 12-Lead ECG Real-Time Visualization
+  Horizon Medical IoT Holter App
+
+  Displays:
+  - BLE security state and encryption indicator
+  - Overall signal quality summary
+  - All 12 ECG leads organized by clinical grouping
+  - Per-lead signal quality indicators
+-->
+
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      <ion-icon name="pulse"></ion-icon>
+      ECG Monitor
+    </ion-title>
+    <ion-buttons end>
+      <!-- Security state indicator -->
+      <button ion-button icon-only [color]="bleStateColor">
+        <ion-icon [name]="bleStateIcon"></ion-icon>
+      </button>
+      <!-- Disconnect button -->
+      <button ion-button icon-only color="light" (click)="disconnect()">
+        <ion-icon name="close-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <!-- Security & Quality Status Bar -->
+  <ion-grid class="status-bar" no-padding>
+    <ion-row>
+      <!-- Security Status -->
+      <ion-col col-6 class="status-item">
+        <ion-icon [name]="bleStateIcon" [style.color]="isSecure ? '#4CAF50' : '#FF9800'"></ion-icon>
+        <span class="status-text" [style.color]="isSecure ? '#4CAF50' : '#FF9800'">
+          {{bleStateLabel}}
+        </span>
+      </ion-col>
+      <!-- Signal Quality -->
+      <ion-col col-6 class="status-item" text-right>
+        <span class="quality-score" [style.color]="overallQualityColor">
+          {{overallScore}}%
+        </span>
+        <span class="quality-label" [style.color]="overallQualityColor">
+          {{overallQuality}}
+        </span>
+        <ion-icon name="pulse" [style.color]="overallQualityColor"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Streaming indicator -->
+  <div class="streaming-indicator" *ngIf="isStreaming">
+    <span class="dot blink"></span>
+    <span>REC - 12 Derivaciones</span>
+  </div>
+  <div class="streaming-indicator offline" *ngIf="!isStreaming">
+    <ion-icon name="alert"></ion-icon>
+    <span>Sin datos</span>
+  </div>
+
+  <!-- 12-Lead ECG Display -->
+  <div class="ecg-container">
+    <!-- Lead Groups -->
+    <div *ngFor="let group of leadGroups; let gi = index" class="lead-group">
+      <div class="group-header">
+        <span class="group-name">{{group.name}}</span>
+      </div>
+
+      <ion-grid no-padding>
+        <ion-row>
+          <ion-col *ngFor="let lead of group.leads; let li = index" col-12>
+            <div class="lead-card">
+              <!-- Lead header with quality indicator -->
+              <div class="lead-header">
+                <span class="lead-name">{{lead}}</span>
+                <div class="quality-indicator">
+                  <span class="quality-dot"
+                        [style.background-color]="getQualityColor(gi * 3 + li)">
+                  </span>
+                  <span class="quality-text"
+                        [style.color]="getQualityColor(gi * 3 + li)">
+                    {{getQualityLabel(gi * 3 + li)}}
+                  </span>
+                  <span class="quality-pct"
+                        [style.color]="getQualityColor(gi * 3 + li)">
+                    {{getQualityScore(gi * 3 + li)}}%
+                  </span>
+                </div>
+              </div>
+              <!-- ECG Chart Canvas -->
+              <canvas [id]="'chart-' + lead"
+                      class="ecg-canvas"
+                      width="400"
+                      height="80">
+              </canvas>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+
+  <!-- Device Info Footer -->
+  <ion-card class="device-info-card">
+    <ion-card-content>
+      <ion-grid no-padding>
+        <ion-row>
+          <ion-col col-6>
+            <p class="info-label">Dispositivo</p>
+            <p class="info-value">{{device?.name || 'IoT Holter'}}</p>
+          </ion-col>
+          <ion-col col-6>
+            <p class="info-label">ID</p>
+            <p class="info-value small">{{device?.id}}</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

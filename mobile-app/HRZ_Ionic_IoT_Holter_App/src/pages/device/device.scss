@@ -1,0 +1,190 @@
+/**
+ * Device Page Styles - 12-Lead ECG Visualization
+ * Horizon Medical IoT Holter App
+ *
+ * Optimized for real-time ECG display with:
+ * - Clinical color conventions for lead groups
+ * - Signal quality indicators
+ * - Responsive canvas sizing
+ * - Security state badges
+ */
+
+page-device {
+  // Status bar at top
+  .status-bar {
+    background: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 6px 12px;
+
+    .status-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+
+      ion-icon {
+        font-size: 18px;
+      }
+
+      .status-text {
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .quality-score {
+        font-size: 16px;
+        font-weight: 700;
+        margin-right: 4px;
+      }
+
+      .quality-label {
+        font-size: 11px;
+        font-weight: 500;
+        margin-right: 4px;
+      }
+    }
+  }
+
+  // Streaming indicator
+  .streaming-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 16px;
+    background: #E8F5E9;
+    font-size: 12px;
+    font-weight: 600;
+    color: #2E7D32;
+
+    &.offline {
+      background: #FFF3E0;
+      color: #E65100;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #F44336;
+
+      &.blink {
+        animation: blink 1s ease-in-out infinite;
+      }
+    }
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  // ECG container
+  .ecg-container {
+    padding: 4px;
+  }
+
+  // Lead group sections
+  .lead-group {
+    margin-bottom: 4px;
+
+    .group-header {
+      padding: 4px 8px;
+      background: #ECEFF1;
+      border-radius: 4px 4px 0 0;
+
+      .group-name {
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: #546E7A;
+        letter-spacing: 0.5px;
+      }
+    }
+  }
+
+  // Individual lead card
+  .lead-card {
+    background: #ffffff;
+    border: 1px solid #e8e8e8;
+    border-radius: 0 0 2px 2px;
+    margin-bottom: 2px;
+    overflow: hidden;
+
+    .lead-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2px 8px;
+      background: #fafafa;
+      border-bottom: 1px solid #f0f0f0;
+
+      .lead-name {
+        font-size: 13px;
+        font-weight: 700;
+        color: #333;
+        min-width: 36px;
+      }
+
+      .quality-indicator {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+
+        .quality-dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          display: inline-block;
+        }
+
+        .quality-text {
+          font-size: 10px;
+          font-weight: 500;
+        }
+
+        .quality-pct {
+          font-size: 10px;
+          font-weight: 600;
+        }
+      }
+    }
+
+    // ECG canvas
+    .ecg-canvas {
+      width: 100%;
+      height: 80px;
+      display: block;
+      background: #ffffff;
+    }
+  }
+
+  // ECG grid paper effect (optional, via canvas background)
+  .ecg-canvas {
+    background-image:
+      linear-gradient(rgba(255, 200, 200, 0.3) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 200, 200, 0.3) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  // Device info card
+  .device-info-card {
+    margin: 8px;
+
+    .info-label {
+      font-size: 10px;
+      color: #999;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .info-value {
+      font-size: 13px;
+      font-weight: 600;
+      color: #333;
+
+      &.small {
+        font-size: 10px;
+        word-break: break-all;
+      }
+    }
+  }
+}

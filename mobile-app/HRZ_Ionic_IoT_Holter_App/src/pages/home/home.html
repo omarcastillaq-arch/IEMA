@@ -1,0 +1,77 @@
+<!-- 
+  Home Page - BLE Device Scanner
+  Horizon Medical IoT Holter App
+  
+  Features:
+  - BLE security state indicator
+  - Device scanning with signal strength bars
+  - User-friendly error messages
+-->
+
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      <ion-icon name="heart"></ion-icon>
+      Horizon Holter
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon [name]="bleStateIcon" [color]="bleStateColor"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <!-- BLE Security State Banner -->
+  <ion-card *ngIf="bleStateLabel" class="state-card">
+    <ion-card-content>
+      <ion-icon [name]="bleStateIcon" [color]="bleStateColor" class="state-icon"></ion-icon>
+      <span class="state-label">{{bleStateLabel}}</span>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Scan Button -->
+  <div padding>
+    <button ion-button block color="primary" (click)="startScanning()" [disabled]="isScanning">
+      <ion-icon name="search" *ngIf="!isScanning"></ion-icon>
+      <ion-spinner name="crescent" *ngIf="isScanning"></ion-spinner>
+      <span *ngIf="!isScanning">&nbsp;Buscar Dispositivos Holter</span>
+      <span *ngIf="isScanning">&nbsp;Buscando...</span>
+    </button>
+  </div>
+
+  <!-- Device List -->
+  <ion-list *ngIf="devices.length > 0">
+    <ion-list-header>
+      Dispositivos encontrados ({{devices.length}})
+    </ion-list-header>
+
+    <ion-item-sliding *ngFor="let device of devices">
+      <button ion-item (click)="connectToDevice(device)" detail-push>
+        <ion-icon name="bluetooth" item-start [color]="getRssiColor(device.rssi)"></ion-icon>
+        <h2>{{device.name || 'Dispositivo Desconocido'}}</h2>
+        <p>ID: {{device.id}}</p>
+        <p>
+          <ion-icon name="wifi" [color]="getRssiColor(device.rssi)"></ion-icon>
+          Señal: {{getRssiLabel(device.rssi)}} ({{device.rssi}} dBm)
+        </p>
+        <!-- Signal strength bars -->
+        <div item-end class="rssi-bars">
+          <div class="bar" [class.active]="getRssiBars(device.rssi) >= 1" [style.background-color]="getRssiBars(device.rssi) >= 1 ? '' : '#ddd'"></div>
+          <div class="bar" [class.active]="getRssiBars(device.rssi) >= 2" [style.background-color]="getRssiBars(device.rssi) >= 2 ? '' : '#ddd'"></div>
+          <div class="bar" [class.active]="getRssiBars(device.rssi) >= 3" [style.background-color]="getRssiBars(device.rssi) >= 3 ? '' : '#ddd'"></div>
+          <div class="bar" [class.active]="getRssiBars(device.rssi) >= 4" [style.background-color]="getRssiBars(device.rssi) >= 4 ? '' : '#ddd'"></div>
+        </div>
+      </button>
+    </ion-item-sliding>
+  </ion-list>
+
+  <!-- Empty State -->
+  <div *ngIf="devices.length === 0 && !isScanning" class="empty-state" padding text-center>
+    <ion-icon name="bluetooth" class="empty-icon"></ion-icon>
+    <h3>Ningún dispositivo encontrado</h3>
+    <p>Presione "Buscar Dispositivos Holter" para escanear dispositivos BLE cercanos.</p>
+    <p class="hint">Asegúrese de que el Holter esté encendido y dentro del alcance.</p>
+  </div>
+</ion-content>
