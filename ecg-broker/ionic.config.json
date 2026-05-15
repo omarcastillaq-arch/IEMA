@@ -1,0 +1,7 @@
+{
+  "name": "ECG Broker",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
