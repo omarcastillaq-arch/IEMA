@@ -1,0 +1,101 @@
+ion-menu-button {
+  color: var(--ion-color-primary);
+}
+
+#container {
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#container strong {
+  font-size: 20px;
+  line-height: 26px;
+}
+
+#container p {
+  font-size: 16px;
+  line-height: 22px;
+  color: #8c8c8c;
+  margin: 0;
+}
+
+#container a {
+  text-decoration: none;
+}
+
+ion-card {
+  border-radius: 30px;
+  box-shadow: none !important;
+  border-color: rgba(0,0,0,0) !important;
+  outline: none !important;
+}
+
+ion-card-header {
+  position: absolute;
+  top: 5px;
+  left: 15px;
+  z-index: 10;
+  padding: 0;
+}
+
+ion-card-subtitle {
+  color: white;
+}
+
+#lead_I {
+  background: linear-gradient(#2b3b34, #363537);
+  color: white;
+}
+
+#lead_aVR {
+  background: linear-gradient(#3e3531, #363537);
+  color: white;
+}
+
+#lead_II {
+  background: linear-gradient(#3d3e30, #363537);
+}
+
+#lead_aVL {
+  background: linear-gradient(#3b2b3d, #363537);
+}
+
+#lead_III {
+  background: linear-gradient(#3f2e33, #363537);
+}
+
+#lead_aVF {
+  background: linear-gradient(#303540, #363537);
+}
+
+#lead_V1 {
+  background: linear-gradient(#403b35, #363537);
+}
+
+#lead_V2 {
+  background: linear-gradient(#41343e, #363537);
+}
+
+#lead_V3 {
+  background: linear-gradient(#3e3531, #363537);
+}
+
+#lead_V4 {
+  background: linear-gradient(#2b3b34, #363537);
+}
+
+#lead_V5 {
+  background: linear-gradient(#3f2e33, #363537);
+}
+
+#lead_V6 {
+  background: linear-gradient(#3b2b3d, #363537);
+}
+
+#lead_II_large {
+  background: linear-gradient(#2b3b34, #363537);
+}
