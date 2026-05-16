@@ -1,0 +1,25 @@
+path: &make_path
+  cwd: /Users/josegranados/Dev/HRZ_IoT_Holter_BLE_SW/HRZ_IoT_Holter_BLE/armgcc
+
+# Default
+cmd: make
+<<: *make_path
+
+# Targets
+targets:
+  clean:
+      cmd: make
+      <<: *make_path
+      args:
+          - clean
+  flash:
+      cmd: make
+      <<: *make_path
+      args:
+          - flash
+  rebuild:
+      cmd: make clean && make
+      <<: *make_path
+  flash softdevice:
+      cmd: make flash_softdevice
+      <<: *make_path

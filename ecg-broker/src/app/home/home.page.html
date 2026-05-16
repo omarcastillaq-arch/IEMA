@@ -1,0 +1,99 @@
+<ion-content padding="true">
+  <div id="container">
+    <ion-grid>
+      <ion-row>
+        <img src="assets/hm_logo_white_bg.png" id="hm-logo">
+      </ion-row>
+      <ion-row>
+        <strong>IoT Holter Status</strong>
+      </ion-row>
+      <ion-row>
+        <ion-text color="{{this.is_connected ? 'success' : 'medium'}}">
+          {{this.is_connected ? 'Connected': 'Disconnected'}}
+        </ion-text>
+      </ion-row>
+      <ion-row>
+        <ion-button (click)='connect_to_holter()'>{{this.is_connected ? 'DISCONNECT': 'CONNECT'}}</ion-button>
+      </ion-row>
+      <ion-row>
+        <strong>WebSocket Server</strong>
+      </ion-row>
+      <ion-row>
+        <ion-text color="{{this.ws_is_connected ? 'success' : 'medium'}}">
+          {{this.ws_is_connected ? 'Listening': 'Stopped'}}
+        </ion-text>
+      </ion-row>
+      <ion-row>
+        <ion-button (click)='connect_to_ws_server()'>
+          {{this.ws_is_connected ? 'STOP': 'START'}}</ion-button>
+      </ion-row>
+      <ion-row>
+        <ion-col class="ion-text-end">
+          <ion-label>IP Address:</ion-label>
+        </ion-col>
+        <ion-col class="ion-text-start">
+          <ion-label>{{this.ip_address}}</ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="ion-text-end">
+          <ion-label>Port:</ion-label>
+        </ion-col>
+        <ion-col class="ion-text-start">
+          <ion-label>8888</ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <strong>Socket.io Client</strong>
+      </ion-row>
+      <ion-row>
+        <ion-text color="{{this.socket_client_connected ? 'success' : 'medium'}}">
+          {{this.socket_client_connected ? 'Connected': 'Disconnected'}}
+        </ion-text>
+      </ion-row>
+      <ion-row>
+        <ion-button (click)='connect_to_socket_server()'>
+          {{this.socket_client_connected ? 'DISCONNECT': 'CONNECT'}}</ion-button>
+      </ion-row>
+      <ion-row>
+        <strong>Datos del Paciente</strong>
+      </ion-row>
+      <ion-row>
+        <ion-button expand="block" (click)="set_open_modal(true)">PACIENTE</ion-button>
+        <ion-modal [isOpen]="isModalOpen">
+          <ng-template>
+            <ion-header>
+              <ion-toolbar>
+                <ion-title>Datos del Paciente</ion-title>
+                <ion-buttons slot="end">
+                  <ion-button (click)="set_open_modal(false)">Cerrar</ion-button>
+                </ion-buttons>
+              </ion-toolbar>
+            </ion-header>
+            <ion-content class="ion-padding">
+              <ion-item>
+                <ion-label position="stacked">Nombre</ion-label>
+                <ion-input type="text" placeholder="Nombre" [value]="this.patient_firstname" (input)="set_patient_firstname($event.target.value)"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="stacked">Apellido</ion-label>
+                <ion-input type="text" placeholder="Apellido" [value]="this.patient_lastname" (input)="set_patient_lastname($event.target.value)"></ion-input>
+              </ion-item>
+            </ion-content>
+          </ng-template>
+        </ion-modal>
+      </ion-row>
+      <ion-row>
+        <strong>ECG Recording</strong>
+      </ion-row>
+      <ion-row>
+        <ion-button (click)='record_ecg()'>RECORD ECG</ion-button>
+      </ion-row>
+      <ion-row>
+        <ion-text [hidden]=this.is_hidden color="{{this.is_recording ? 'danger' : 'medium'}}">
+          {{this.is_recording ? 'Recording': 'Stopped'}}
+        </ion-text>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

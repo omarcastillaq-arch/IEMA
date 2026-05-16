@@ -1,0 +1,33 @@
+body {
+ background-color: #363537;
+ display: flex;
+ flex-wrap: wrap;
+}
+
+#lead_I {
+  display: inline-block;
+  border-radius: 30px;
+  margin: 10px;
+  background: linear-gradient(to top, transparent 0%, rgba(12,206,107,0.1) 100%);
+}
+
+#lead_II {
+  display: inline-block;
+  border-radius: 30px;
+  margin: 10px;
+  background: linear-gradient(to top, transparent 0%, rgba(237,125,58,0.1) 100%);
+}
+
+#lead_III {
+  display: inline-block;
+  border-radius: 30px;
+  margin: 10px;
+  background: linear-gradient(to top, transparent 0%, rgba(220,237,49,0.1) 100%);
+}
+
+#lead_aVR {
+  display: inline-block;
+  border-radius: 30px;
+  margin: 10px;
+  background: linear-gradient(to top, transparent 0%, rgba(202,12,206,0.1) 100%);
+}

@@ -1,0 +1,14 @@
+# Segger: listen on port
+target remote localhost:2331
+
+# load/flash application file
+file HRZ_IoT_Holter_BLE/armgcc/_build/nrf52832_xxaa.out
+
+# Segger: reset device
+monitor reset
+
+# Add breakpoint
+break app_error_save_and_stop
+
+# Continue
+c

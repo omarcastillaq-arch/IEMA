@@ -1,0 +1,25 @@
+{
+  "name": "web_ble_ecg",
+  "version": "1.0.0",
+  "description": "* /dist: compilation output folder which contains main index.html and bundle.js files.   * /src: TypeScript source code.   * webpack.config.js: Webpack configuration file.   * tsconfig.json: TypeScript compiler configuration. * package-lock.json: npm dependencies.",
+  "main": "webpack.config.js",
+  "dependencies": {
+    "@types/web-bluetooth": "0.0.9",
+    "@types/ws": "^8.5.3",
+    "socket.io-client": "^4.5.1",
+    "ts-loader": "^8.0.12",
+    "typescript": "^4.1.3",
+    "webpack": "^5.10.1",
+    "webpack-cli": "^4.2.0",
+    "ws": "^8.8.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jose Granados",
+  "license": "MIT",
+  "optionalDependencies": {
+    "bufferutil": "^4.0.6",
+    "utf-8-validate": "^5.0.9"
+  }
+}

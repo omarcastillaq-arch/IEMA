@@ -1,0 +1,97 @@
+/**
+ * Home Page Styles - BLE Device Scanner
+ * Horizon Medical IoT Holter App
+ */
+
+page-home {
+  .state-card {
+    margin: 8px;
+    
+    ion-card-content {
+      display: flex;
+      align-items: center;
+      padding: 8px 16px;
+    }
+
+    .state-icon {
+      font-size: 24px;
+      margin-right: 12px;
+    }
+
+    .state-label {
+      font-size: 14px;
+      font-weight: 500;
+    }
+  }
+
+  // Signal strength bars
+  .rssi-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 24px;
+
+    .bar {
+      width: 6px;
+      border-radius: 1px;
+      background-color: #ddd;
+      transition: background-color 0.3s ease;
+
+      &:nth-child(1) { height: 6px; }
+      &:nth-child(2) { height: 12px; }
+      &:nth-child(3) { height: 18px; }
+      &:nth-child(4) { height: 24px; }
+
+      &.active {
+        background-color: #4CAF50 !important;
+      }
+    }
+  }
+
+  // Empty state
+  .empty-state {
+    margin-top: 40px;
+
+    .empty-icon {
+      font-size: 64px;
+      color: #ccc;
+      display: block;
+      margin-bottom: 16px;
+    }
+
+    h3 {
+      color: #666;
+      font-weight: 500;
+    }
+
+    p {
+      color: #999;
+      font-size: 14px;
+    }
+
+    .hint {
+      font-style: italic;
+      margin-top: 8px;
+    }
+  }
+
+  // Toast color variants
+  .toast-secondary {
+    .toast-wrapper {
+      background-color: #32db64;
+    }
+  }
+
+  .toast-danger {
+    .toast-wrapper {
+      background-color: #f53d3d;
+    }
+  }
+
+  .toast-warning {
+    .toast-wrapper {
+      background-color: #ffce00;
+      color: #333;
+    }
+  }
+}

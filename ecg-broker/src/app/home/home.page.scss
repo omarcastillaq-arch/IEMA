@@ -1,0 +1,48 @@
+#container {
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  // border: 1px solid blue;
+}
+
+#container strong {
+  font-size: 20px;
+  line-height: 26px;
+  // padding: 10px 0 10px 0;
+}
+
+#container p {
+  font-size: 16px;
+  line-height: 22px;
+  color: #8c8c8c;
+  margin: 0;
+}
+
+#container a {
+  text-decoration: none;
+}
+
+#hm-logo {
+  padding-top: 40px;
+  max-width: 30%;
+  // border-radius: 10%;
+}
+
+ion-row {
+  align-items: center;
+  justify-content: center;
+}
+
+ion-row strong {
+  padding-top: 10px;
+}
+
+#id {
+  text-align: right;
+}
+
+.right{
+  float:right ;
+  text-align: right;
+}
